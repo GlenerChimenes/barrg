@@ -1,0 +1,41 @@
+[33mcommit dca61da322344b9dab823a56edc8a3039c615344[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Tue Aug 27 21:52:20 2019 -0300
+
+    Ajustes no endpoint /categorias/{id}
+
+[33mcommit 0b3f756ae6480728c82e66bee047369683de8edd[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Mon Aug 26 22:56:27 2019 -0300
+
+    Criando operacao de instanciancao
+
+[33mcommit d0e2deb984b64d1a900d1661380dd8edfb2b0874[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Mon Aug 26 22:29:31 2019 -0300
+
+    criando repository e service para categoria
+
+[33mcommit 02e54d3b1d2afe7fbad85a894e02c9f6140f1e47[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Thu Aug 22 23:55:00 2019 -0300
+
+    Banco de dados H2 e criacao automatica da base de dados
+
+[33mcommit 5468fe870b08425dc9b305e17485b39ab355557c[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Thu Aug 22 22:38:51 2019 -0300
+
+    Testando a primeira classe d edominio
+
+[33mcommit 3a47d2dfb39c0e26e0df232f57140e8451add565[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Thu Aug 22 21:41:30 2019 -0300
+
+    REST testado
+
+[33mcommit 000c7b725c1c216d99f7cba183eed06ce6fa09a6[m
+Author: GlenerChimenes <glener.chimenes@gmail.com>
+Date:   Thu Aug 22 21:13:00 2019 -0300
+
+    Projeto criado
