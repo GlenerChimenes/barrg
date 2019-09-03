@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.bar.rg.domain.Categoria;
 import com.bar.rg.domain.Cidade;
+import com.bar.rg.domain.Cliente;
+import com.bar.rg.domain.Endereco;
 import com.bar.rg.domain.Estado;
 import com.bar.rg.domain.Produto;
+import com.bar.rg.domain.enums.TipoCliente;
 import com.bar.rg.repository.CategoriaRepository;
 import com.bar.rg.repository.CidadeRepository;
+import com.bar.rg.repository.ClienteRepository;
+import com.bar.rg.repository.EnderecoRepository;
 import com.bar.rg.repository.EstadoRepository;
 import com.bar.rg.repository.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class BarrgApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BarrgApplication.class, args);
@@ -71,8 +82,18 @@ public class BarrgApplication implements CommandLineRunner{
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 				
-				
+			
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
 		
+		cli1.getTelefones().addAll(Arrays.asList("123456789", "789456123"));
+		
+		Endereco e1 = new Endereco(null, "Avenida Matos","105", "Sala 800", "Centro", "38777012", cli1, c1);
+		Endereco e2 = new Endereco(null, "Rua Flores","105", "Sala 800", "Centro", "12354546", cli1, c2);
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 	}
 
