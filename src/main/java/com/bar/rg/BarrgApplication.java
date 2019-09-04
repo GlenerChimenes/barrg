@@ -1,5 +1,6 @@
 package com.bar.rg;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.bar.rg.domain.Cidade;
 import com.bar.rg.domain.Cliente;
 import com.bar.rg.domain.Endereco;
 import com.bar.rg.domain.Estado;
+import com.bar.rg.domain.Pagamento;
+import com.bar.rg.domain.PagamentoComBoleto;
+import com.bar.rg.domain.PagamentoComCartao;
+import com.bar.rg.domain.Pedido;
 import com.bar.rg.domain.Produto;
+import com.bar.rg.domain.enums.EstadoPagamento;
 import com.bar.rg.domain.enums.TipoCliente;
 import com.bar.rg.repository.CategoriaRepository;
 import com.bar.rg.repository.CidadeRepository;
 import com.bar.rg.repository.ClienteRepository;
 import com.bar.rg.repository.EnderecoRepository;
 import com.bar.rg.repository.EstadoRepository;
+import com.bar.rg.repository.PagamentoRepository;
+import com.bar.rg.repository.PedidoRepository;
 import com.bar.rg.repository.ProdutoRepository;
 
 @SpringBootApplication
@@ -41,6 +49,12 @@ public class BarrgApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BarrgApplication.class, args);
@@ -94,6 +108,22 @@ public class BarrgApplication implements CommandLineRunner{
 		
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2)); 
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2019 10:32" ), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2019 19:35" ), cli1, e2);
+		
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pagto1);
+		
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2019 00:00"), null);
+		ped2.setPagamento(pagto2);
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 		
 	}
 
