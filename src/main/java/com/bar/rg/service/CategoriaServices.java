@@ -1,5 +1,6 @@
 package com.bar.rg.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,8 @@ public class CategoriaServices {
 		}
 		
 }
+
+	public List<Categoria> findAll() {
+		return repo.findAll();
+	}
 }
