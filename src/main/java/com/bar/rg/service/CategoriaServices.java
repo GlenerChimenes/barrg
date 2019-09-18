@@ -3,10 +3,12 @@ package com.bar.rg.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.bar.rg.domain.Categoria;
 import com.bar.rg.repository.CategoriaRepository;
+import com.bar.rg.service.exceptions.DataIntegrityException;
 import com.bar.rg.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -31,4 +33,15 @@ public class CategoriaServices {
 		find(obj.getId());
 		return repo.save(obj);
 	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+		repo.deleteById(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que contenha produtos!");
+		}
+		
+}
 }
