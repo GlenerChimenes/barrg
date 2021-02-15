@@ -2,6 +2,7 @@ package com.bar.rg.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.bar.rg.domain.enums.EstadoPagamento;
@@ -14,9 +15,11 @@ public class PagamentoComBoleto extends Pagamento {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "data_vencimento")
 	private  Date dataVencimento;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "data_pagamento")
 	private  Date dataPagamento;
 	
 	
