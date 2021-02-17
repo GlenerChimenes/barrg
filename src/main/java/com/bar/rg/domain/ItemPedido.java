@@ -7,6 +7,8 @@ import java.util.Locale;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.SafeHtml.Attribute;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,12 +22,11 @@ public class ItemPedido implements Serializable {
 	private Double desconto;
 	private Integer quantidade;
 	private double preco;
-	
+	private double subTotal;
 	
 	public ItemPedido() {
 		
 	}
-
 
 	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, double preco) {
 		super();
@@ -37,7 +38,8 @@ public class ItemPedido implements Serializable {
 	}
 	
 	public double getSubtotal() {
-		return (preco - desconto) * quantidade;
+		this.subTotal = (preco - desconto) * quantidade;
+		return subTotal;
 	}
 	
 	@JsonIgnore
