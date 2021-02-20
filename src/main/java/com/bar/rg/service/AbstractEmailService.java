@@ -20,7 +20,7 @@ public abstract class AbstractEmailService implements EmailService {
 	@Value("${default.sender}")
 	private String sender;
 	
-	@Autowired(required=true)
+	@Autowired
 	private TemplateEngine templateEngine;
 	
 	@Autowired
