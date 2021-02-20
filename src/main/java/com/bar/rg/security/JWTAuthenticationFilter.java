@@ -1,4 +1,4 @@
-package com.bar.rg.config;
+package com.bar.rg.security;
 
 import java.io.IOException;
 import java.rmi.ServerException;
@@ -18,7 +18,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.bar.rg.dto.CredenciaisDTO;
-import com.bar.rg.security.UserSS;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
