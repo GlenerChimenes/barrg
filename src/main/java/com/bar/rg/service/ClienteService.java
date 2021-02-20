@@ -3,8 +3,6 @@ package com.bar.rg.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -16,11 +14,14 @@ import org.springframework.stereotype.Service;
 import com.bar.rg.domain.Cidade;
 import com.bar.rg.domain.Cliente;
 import com.bar.rg.domain.Endereco;
+import com.bar.rg.domain.enums.Perfil;
 import com.bar.rg.domain.enums.TipoCliente;
 import com.bar.rg.dto.ClienteDTO;
 import com.bar.rg.dto.ClienteNewDTO;
 import com.bar.rg.repository.ClienteRepository;
 import com.bar.rg.repository.EnderecoRepository;
+import com.bar.rg.security.UserSS;
+import com.bar.rg.service.exceptions.AuthorizationException;
 import com.bar.rg.service.exceptions.DataIntegrityException;
 import com.bar.rg.service.exceptions.ObjectNotFoundException;
 
@@ -40,6 +41,12 @@ public class ClienteService {
 //	private CidadeRepository cidadeRepository;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authentication();
+		if(user == null || !user.hasRole(Perfil.ADMIM) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encotrado! Id: " + id +", Tipo: " + Cliente.class.getName()));
