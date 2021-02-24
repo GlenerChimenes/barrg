@@ -8,7 +8,7 @@ import com.bar.rg.security.UserSS;
 @Service
 public class UserService {
 
-	public static UserSS authentication() {
+	public static UserSS authenticated() {
 		try {
 			return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		}
