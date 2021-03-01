@@ -75,6 +75,21 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- AWS-JAVA -->
+		<dependency>
+ 			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		
+		<!-- COMONS-->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>LATEST</version>
+		</dependency> 
+		
 
 		<!-- TESTE -->
 <!-- 		<dependency> -->
