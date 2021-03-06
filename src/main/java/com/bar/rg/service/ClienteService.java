@@ -48,7 +48,10 @@ public class ClienteService {
 	private ImageService imageService;
 	
 	@Value("${img.prefix.client.profile}")
-	private String prefix;
+	private String prefix;  
+	
+	@Value("${img.profile.size}")
+	private Integer size; 
 	
 //	@Autowired
 //	private CidadeRepository cidadeRepository;
@@ -136,6 +139,9 @@ public class ClienteService {
 		}
 		
 		BufferedImage jpgImgage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImgage = imageService.cropSquare(jpgImgage);
+		jpgImgage = imageService.resize(jpgImgage, size);
+		
 		String fileName = prefix + user.getId() + ".jpg"; 
 		
 		return s3Service.uploadFile(imageService.getInputStrem(jpgImgage, "jpg"), fileName, "image");
